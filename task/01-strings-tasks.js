@@ -22,7 +22,8 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    throw new Error('Not implemented');
+
+    return value1.concat(value2);
 }
 
 
@@ -38,7 +39,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    throw new Error('Not implemented');
+    return value.length;
 }
 
 /**
@@ -55,7 +56,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
+   return "Hello, " + firstName + " " + lastName + "!";
 }
 
 /**
@@ -69,7 +70,11 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+    var str = "";
+  for(var i = 7; i < value.length -1; i++){
+      str += value[i];
+  }
+  return str;
 }
 
 
@@ -84,7 +89,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
+  return value[0];
 }
 
 /**
@@ -99,7 +104,8 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    throw new Error('Not implemented');
+
+    return value.trim();
 }
 
 /**
@@ -114,7 +120,11 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+    var str = "";
+    for(var i = 0; i < count; i++){
+        str+= value;
+    }
+        return str;
 }
 
 /**
@@ -130,7 +140,8 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    throw new Error('Not implemented');
+
+    return str.replace(value, '');
 }
 
 /**
@@ -145,7 +156,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    throw new Error('Not implemented');
+    return str.slice(1, str.length -1);
 }
 
 
@@ -160,7 +171,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+    return str.toUpperCase();
 }
 
 /**
@@ -174,7 +185,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-    throw new Error('Not implemented');
+    return str.split(';');
 }
 
 /**
@@ -197,11 +208,40 @@ function extractEmails(str) {
  *
  *             '┌──────────┐\n'+
  *  (12,3) =>  '│          │\n'+
- *             '└──────────┘\n'
+ *             '└──────────└\n'
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+    var arr = new Array(height);
+    for(var i = 0; i < height; i++){
+        arr[i] = new Array(width);
+    }
+    for(var i =0; i < height; i++){
+        for(var j = 0; j <width; j++) {
+            arr[i][j] = " ";
+        }
+
+    }
+    arr[0][0] = "┌";
+    arr[0][width - 1] = "┐";
+    arr[height - 1][0] = "└";
+    arr[height - 1][width - 1] = "┘";
+    for(var i = 1; i < width - 1; i++){
+        arr[0][i] = "─";
+        arr[height - 1][i] = "─";
+    }
+    for(var i = 1; i < height - 1; i++){
+        arr[i][0] = "│";
+        arr[i][width - 1] = "│";
+    }
+    var str =""
+    for(var i =0; i < height; i++){
+        for(var j = 0; j <width; j++) {
+            str += arr[i][j];
+        }
+        str += "\n";
+    }
+    return str;
 }
 
 
@@ -221,7 +261,11 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+
+
+    return (str+'').replace(/[a-zA-Z]/gi,function(s){
+        return String.fromCharCode(s.charCodeAt(0)+(s.toLowerCase()<'n'?13:-13))
+    })
 }
 
 /**
@@ -239,6 +283,11 @@ function encodeToRot13(str) {
  */
 function isString(value) {
     throw new Error('Not implemented');
+
+    if(value === undefined || value === null)
+        return false;
+
+    return typeof value === 'string';
 }
 
 
